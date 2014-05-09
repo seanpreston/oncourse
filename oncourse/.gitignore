@@ -1,0 +1,17 @@
+!.gitignore
+.DS_Store
+logfile
+*.pyc
+media
+local_settings.py
+wsgi_handler.py
+static_collected
+settings.py
+dumps
+deploy.txt
+static/admin
+.sass-cache
+*.css.map
+node_modules
+logs
+.fuse_hidden*

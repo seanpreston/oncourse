@@ -1,0 +1,11 @@
+bpython==0.10.1
+celery
+django
+django-annoying==0.7.6
+mongoengine==0.8.3
+pymongo==2.5.1
+short-url==1.0
+simplejson==3.0.7
+south
+requests
+-e git://github.com/toastdriven/django-tastypie.git@94791908c29fe46023e1e4302624b4d56a0372fb#egg=django_tastypie-devan
