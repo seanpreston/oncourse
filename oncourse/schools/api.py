@@ -8,9 +8,9 @@ import json
 
 class SchoolsListView(ApiView):
 
-    authentication = [ApiBearerAuthentication()]
+    # authentication = [ApiBearerAuthentication()]
 
-    @authenticate
+    # @authenticate
     def get(self, request, *args, **kwargs):
         offset = int(request.GET.get('offset', '0'), 10)
         limit = int(request.GET.get('limit', '20'), 10)
@@ -21,4 +21,19 @@ class SchoolsListView(ApiView):
         schools_data = [json.dumps(school.__dict__) for school in schools]
 
         data = {'objects': schools_data}
-        return self.json(data)
+        return self.json(data, date_fields=['last_modified', 'created_at',])
+
+
+class SchoolsView(ApiView):
+
+    # authentication = [ApiBearerAuthentication()]
+
+    # @authenticate
+    def get(self, request, school_slug, *args, **kwargs):
+        try:
+            school = School.objects.get(slug=school_slug)
+        except School.DoesNotExist:
+            return self.not_found()
+
+        data = school.values()
+        return self.json(data, date_fields=['last_modified', 'created_at',])
