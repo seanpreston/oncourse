@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # API v0
-    url(r'^', include('api_urls')),
+    url(r'^', include('oncourse.api_urls')),
 
     # Index
     # url(r'^$', 'project_settings.views.home', name='home'),

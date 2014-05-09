@@ -5,7 +5,7 @@ urlpatterns = patterns(
     '',
 
     # URLs
-    url(r'^', include('schools.api_urls')),
-    url(r'^', include('subjects.api_urls')),
+    url(r'^', include('oncourse.schools.api_urls')),
+    url(r'^', include('oncourse.subjects.api_urls')),
 
 )

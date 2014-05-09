@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from oncourse.api.views import ApiView, ApiBearerAuthentication
-from api.decorators import authenticate
+from oncourse.api.decorators import authenticate
 from .models import School
 
 import json
 
 
-class SchoolsView(ApiView):
+class SchoolsListView(ApiView):
 
     authentication = [ApiBearerAuthentication()]
 

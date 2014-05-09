@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from utils import slugify
+from oncourse.utils import slugify
 
 
 class School(models.Model):
