@@ -1,16 +1,17 @@
-import requests
-import erequests
-import settings
-import json
-from datetime import datetime, date
-
+# -*- coding: utf-8 -*-
+from django.conf import settings
+from django.http import QueryDict
 from django.utils.encoding import iri_to_uri
 
-import statsd
-from metrics import Timer
-import logging
 from base64 import b64encode
-from django.http import QueryDict
+from datetime import datetime, date
+# from metrics import Timer
+
+import erequests
+import json
+import logging
+import requests
+import statsd
 
 logger = logging.getLogger(__name__)
 
@@ -110,14 +111,15 @@ def build_auth():
 
     def pre_request(request):
         #print "REQ %i START" % id(request)
-        Timer.start((name, id(request)))
+        # Timer.start((name, id(request)))
         return None
 
     def post_request(request):
-        obj_id = (name, id(request))
-        elapsed = Timer.elapsed(obj_id)
+        # obj_id = (name, id(request))
+        # elapsed = Timer.elapsed(obj_id)
         #print "REQ %i END in %i" % (id(request), elapsed * 1000)
-        Timer.accumulate(elapsed)
+        # Timer.accumulate(elapsed)
+        return None
 
  #   hooks = {
         # 'pre_request': pre_request,
