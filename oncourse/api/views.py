@@ -178,6 +178,17 @@ class ApiView(View):
         extensions = request.GET.getlist('_extensions', [])
         return extension in extensions
 
+    def load_object(self, obj):
+        fields = obj._meta.get_all_field_names()
+        manager_fields = [field.get_accessor_name() for field in obj._meta.get_all_related_objects()]
+        fields = set(fields) - set(manager_fields)
+
+        data = {}
+        for field in fields:
+            data[field] = getattr(obj, field)
+
+        return data
+
 
 class ApiPublicAuthentication(object):
 
