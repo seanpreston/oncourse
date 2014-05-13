@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 
 from django.contrib import admin
 admin.autodiscover()
@@ -17,6 +19,6 @@ urlpatterns = patterns('',
     url(r'^', include('oncourse.api_urls')),
 
     # Index
-    # url(r'^$', 'project_settings.views.home', name='home'),
+    url(r'^login/$', 'oncourse.views.login', name='login'),
 
-)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
