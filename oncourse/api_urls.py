@@ -6,6 +6,9 @@ urlpatterns = patterns(
 
     # URLs
 
+    # Account
+    url(r'^', include('oncourse.account.api_urls')),
+
     # Schools
     url(r'^', include('oncourse.schools.api_urls')),
 
