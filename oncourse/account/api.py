@@ -1,9 +1,9 @@
-from django.core.urlresolvers import reverse, resolve
+# -*- coding: utf-8 -*-
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import MultipleObjectsReturned
+from django.core.urlresolvers import reverse, resolve
 
-from oncourse.fans.models import UserProfile
 from oncourse.api.views import ApiView, ApiConsumerAuthentication, ApiBearerAuthentication, ApiMobileAuthentication
 from oncourse.api.decorators import authenticate
 from oncourse.api.models import AccessToken
@@ -99,6 +99,7 @@ def load_user(request, user):
         'username': user.username,
         'first_name': user.first_name,
         'last_name': user.last_name,
+        'email': user.email,
     }
 
     # try:
@@ -119,6 +120,5 @@ class AuthedView(ApiView):
     @authenticate
     def get(self, request, *args, **kwargs):
         data = {'user': load_user(request, request.user)}
-        data['user']['email'] = request.user.email
 
         return self.json(data)
