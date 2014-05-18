@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
+from django.contrib.auth.views import logout_then_login
 
 from django.contrib import admin
 admin.autodiscover()
@@ -18,7 +19,12 @@ urlpatterns = patterns('',
     # API v0
     url(r'^', include('oncourse.api_urls')),
 
-    # Index
-    url(r'^login/$', 'oncourse.views.login', name='login'),
+    # Dash
+    url(r'^dash/$', 'oncourse.views.dash', name='dash'),
 
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # Login
+    url(r'^login/$', 'oncourse.views.login', name='login'),
+    url(r'^logout/$', logout_then_login, name='logout'),
+
+)
+# ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
