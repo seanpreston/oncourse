@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+    <!-- Custom styles for this template -->
+    <link href="../static/css/signin.css" rel="stylesheet">
+{% endblock %}
+
+{% block page_title %}Dash{% endblock %}
+
+{% block header %}
+	<ol>
+		<li><a href="{% url 'logout' %}">Log out</a></li>
+	</ol>
+{% endblock %}
+
+{% block page %}
+    <div class="container">
+
+        <h1>You're logged in!</h1>
+
+    </div> <!-- /container -->
+{% endblock %}

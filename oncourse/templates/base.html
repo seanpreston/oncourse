@@ -30,8 +30,8 @@
         {% load staticfiles %}
     </head>
     <body>
-        {% block page %}
-        {% endblock %}
+        {% block header %}{% endblock %}
+        {% block page %}{% endblock %}
 
         <script type="text/javascript">
             {% if user %}
