@@ -76,12 +76,3 @@ def create_access_token(sender, instance, signal, *args, **kwargs):
         AccessToken.objects.create(user=instance, consumer=consumer)
 
 models.signals.post_save.connect(create_access_token, sender=User, dispatch_uid="create_user_profile")
-
-
-def create_access_token(sender, instance, signal, *args, **kwargs):
-    created = kwargs.get('created', False)
-    if created:
-        consumer = OAuthConsumer.objects.get(key=settings.MASTER_OAUTH_KEY, secret=settings.MASTER_OAUTH_SECRET)
-        AccessToken.objects.create(user=instance, consumer=consumer)
-
-models.signals.post_save.connect(create_access_token, sender=User, dispatch_uid="create_user_profile")
