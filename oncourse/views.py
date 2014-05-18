@@ -7,6 +7,7 @@ from django.template import RequestContext
 
 from oncourse.auth.views import _login_request, LoginFailure
 from oncourse.util.auth import is_authenticated
+from oncourse.util.decorators import auth_required
 
 import statsd
 
@@ -15,6 +16,7 @@ def login(request):
     """
     Login page, for which all anonymous users attempting to visit a page without authorization will be redirected to
     """
+
     if is_authenticated(request):
         return redirect('dash')
 
@@ -39,6 +41,7 @@ def login(request):
             # If data posted but is invalid for any reason
             statsd.increment('login.failure')
             messages.error(request, "Sorry, those login details aren't valid")
+            next = 'login'
         else:
             try:
                 resolve(next)
@@ -56,11 +59,13 @@ def login(request):
         {
             'next': next,
             'login_form': login_form,
+            # 'messages': messages,
         },
         context_instance=RequestContext(request)
     )
 
 
+@auth_required
 def dash(request):
     return render_to_response(
         'dash.html',
