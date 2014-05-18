@@ -24,10 +24,10 @@ def auth_required(fn):
 
             # Cached token has expired, been removed (and subsequently from cache) or assigned to a different user
             if token is None or token_username != username:
-                data, status = api_call('get', '/api/v1/account/authed/', token=token)
+                data, status = api_call('get', '/api/v0/account/authed/', token=token)
                 if status == 200 and data['user']['username'] == username:
                     request.session['user'] = data['user']
-                    cache.set(ckey, username, settings.USER_SESSION_DATA_TIMEOUT)
+                    cache.set(ckey, username, settings.CACHE_TIMEOUT)
                 else:
                     request.session.flush()
                     return redirect('login')
