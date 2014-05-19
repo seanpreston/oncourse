@@ -8,12 +8,14 @@
         <meta name="csrf-token" content="{{csrf_token}}" />
         <meta name="csrf-param" content="_csrf" />
 
+        {% load staticfiles %}
+
         <title>{% block page_title %}{% endblock %} | On Course</title>
-        <link rel="shortcut icon" href="../static/images/site/icons/favicon.ico" />
+        <link rel="shortcut icon" href="{% static 'images/site/icons/favicon.ico' %}" />
 
         <!-- Bootstrap -->
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
         <!-- Optional theme -->
         <!-- <link rel="stylesheet" href="../css/bootstrap-theme.min.css"> -->
@@ -26,8 +28,6 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
-        {% load staticfiles %}
     </head>
     <body>
         {% block header %}{% endblock %}
