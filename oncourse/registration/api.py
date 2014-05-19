@@ -23,8 +23,9 @@ class UserRegistrationView(ApiView):
             last_name=data['last_name'],
             email=data['email'],
             username=data['username'],
-            password=data['password'],
         )
+        user.set_password(data['password'])
+        user.save()
 
         try:
             access_token = user.access_tokens.get(
