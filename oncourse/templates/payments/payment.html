@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block page_title %}Make Payment{% endblock %}
+
+{% block page %}
+    <div class="container">
+
+        <form action="{% url 'payments-process' %}" method="POST" id="payment-form">{% csrf_token %}
+
+            <h2 class="form-signin-heading">Show me the money!</h2>
+            <p>You are being charged {{ amount }} for {{ service }}</p>
+            <span class="payment-errors"></span>
+            {% include "messages.html" %}
+
+            <input type="text" class="form-control" placeholder="Card Number" data-stripe="number" required autofocus />
+            <input type="text" class="form-control" placeholder="CVC" data-stripe="cvc" required />
+            <input type="text" size="2" class="form-control" placeholder="11" data-stripe="exp-month" required />
+            <input type="text" size="4" class="form-control" placeholder="2016" data-stripe="exp-year" required />
+
+            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit Payment" />
+        </form>
+
+    </div> <!-- /container -->
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        Stripe.setPublishableKey('{{ STRIPE_API_SECRET }}');
+
+        var stripeResponseHandler = function(status, response) {
+            var $form = $('#payment-form');
+
+            if (response.error) {
+                // Show the errors on the form
+                $form.find('.payment-errors').text(response.error.message);
+                $form.find('button').prop('disabled', false);
+            } else {
+                // token contains id, last4, and card type
+                var token = response.id;
+                // Insert the token into the form so it gets submitted to the server
+                $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+                // and re-submit
+                $form.get(0).submit();
+            }
+        };
+
+        jQuery(function($) {
+            $('#payment-form').submit(function(event) {
+                var $form = $(this);
+
+                // Disable the submit button to prevent repeated clicks
+                $form.find('button').prop('disabled', true);
+
+                Stripe.card.createToken($form, stripeResponseHandler);
+                console.log($form);
+
+                // Prevent the form from submitting with the default action
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
