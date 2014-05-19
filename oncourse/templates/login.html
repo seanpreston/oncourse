@@ -10,19 +10,19 @@
 {% block page %}
     <div class="container">
 
-    <form action="{% url 'login' %}" method="post" class="form-signin" role="form">
-        {% csrf_token %}
-        <h2 class="form-signin-heading">Please sign in</h2>
-        {% include "messages.html" %}
-        <input type="username" name="username" class="form-control" placeholder="Username" required autofocus />
-        <input type="password" name="password" class="form-control" placeholder="Password" required />
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in" />
-        <br />
-        <p>Not registered yet? <a href="{% url 'registration-index' %}">Register here</a></p>
-    </form>
+        <form action="{% url 'login' %}" method="post" class="form-signin" role="form">
+            {% csrf_token %}
+            <h2 class="form-signin-heading">Please sign in</h2>
+            {% include "messages.html" %}
+            <input type="username" name="username" class="form-control" placeholder="Username" required autofocus />
+            <input type="password" name="password" class="form-control" placeholder="Password" required />
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in" />
+            <br />
+            <p>Not registered yet? <a href="{% url 'registration-index' %}">Register here</a></p>
+        </form>
 
     </div> <!-- /container -->
 {% endblock %}
