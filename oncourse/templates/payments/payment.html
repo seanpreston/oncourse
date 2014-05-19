@@ -15,10 +15,11 @@
         <form action="{% url 'payments-process' %}" method="POST" id="payment-form">{% csrf_token %}
 
             <h2 class="form-signin-heading">Show me the money!</h2>
-            <p>You are being charged {{ amount }} for {{ service }}</p>
+
             <span class="payment-errors"></span>
             {% include "messages.html" %}
 
+            <p>You are being charged {{ amount }} for {{ service }}</p>
             <input type="text" class="form-control" placeholder="Card Number" data-stripe="number" required autofocus />
             <input type="text" class="form-control" placeholder="CVC" data-stripe="cvc" required />
             <input type="text" size="2" class="form-control" placeholder="11" data-stripe="exp-month" required />
