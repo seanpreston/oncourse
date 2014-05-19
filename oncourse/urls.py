@@ -26,5 +26,8 @@ urlpatterns = patterns('',
     url(r'^login/$', 'oncourse.views.login', name='login'),
     url(r'^logout/$', logout_then_login, name='logout'),
 
+    # Landing
+    url(r'^$', 'oncourse.views.landing', name='landing'),
+
 )
 # ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

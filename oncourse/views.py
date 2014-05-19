@@ -72,3 +72,11 @@ def dash(request):
         {},
         context_instance=RequestContext(request)
     )
+
+
+def landing(request):
+    return render_to_response(
+        'landing.html',
+        {},
+        context_instance=RequestContext(request),
+    )
