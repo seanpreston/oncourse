@@ -26,6 +26,9 @@ urlpatterns = patterns('',
     url(r'^login/$', 'oncourse.views.login', name='login'),
     url(r'^logout/$', logout_then_login, name='logout'),
 
+    # Registration
+    url(r'^', include('oncourse.registration.urls')),
+
     # Landing
     url(r'^$', 'oncourse.views.landing', name='landing'),
 
