@@ -11,5 +11,6 @@ short-url==1.0
 simplejson==3.0.7
 south
 statsd-client==1.0.2
+stripe
 -e git://github.com/toastdriven/django-tastypie.git@94791908c29fe46023e1e4302624b4d56a0372fb#egg=django_tastypie-devan
 -e git://github.com/immunda/erequests.git@3d0e33bb5f19f49691c6dce63bc931df6ad27db6#egg=erequests-dev
