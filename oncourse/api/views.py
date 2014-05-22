@@ -147,32 +147,32 @@ class ApiView(View):
             resp['Location'] = location
         return resp
 
-    def accepted(self):
-        return HttpResponse(status=202)
+    def accepted(self, content='Accepted'):
+        return HttpResponse(content, status=202)
 
-    def no_content(self):
-        return HttpResponse(status=204)
+    def no_content(self, content='No content'):
+        return HttpResponse(content, status=204)
 
-    def bad_request(self):
-        return HttpResponse(status=400)
+    def bad_request(self, content='Bad request'):
+        return HttpResponse(content, status=400)
 
-    def unauthorized(self):
-        return HttpResponse('Unauthorized', status=401)
+    def unauthorized(self, content='Unauthorized'):
+        return HttpResponse(content, status=401)
 
-    def forbidden(self):
-        return HttpResponse(status=403)
+    def forbidden(self, content='Forbidden'):
+        return HttpResponse(content, status=403)
 
-    def not_found(self):
-        return HttpResponse(status=404)
+    def not_found(self, content='Not found'):
+        return HttpResponse(content, status=404)
 
-    def not_allowed(self):
-        return HttpResponse(status=405)
+    def not_allowed(self, content='Not allowed'):
+        return HttpResponse(content, status=405)
 
-    def conflict(self):
-        return HttpResponse(status=409)
+    def conflict(self, content='Conflict'):
+        return HttpResponse(content, status=409)
 
-    def resource_expired(self):
-        return HttpResponse(status=410)
+    def resource_expired(self, content='Resource expired'):
+        return HttpResponse(content, status=410)
 
     def has_extension(self, request, extension):
         extensions = request.GET.getlist('_extensions', [])
