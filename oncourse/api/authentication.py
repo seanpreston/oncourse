@@ -3,7 +3,6 @@ import logging
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
-from tastypie.authentication import Authentication
 from .models import OAuthConsumer, AccessToken
 from datetime import datetime
 from annoying.functions import get_object_or_None
@@ -19,9 +18,8 @@ def _strip_header_content(auth_type, header):
         return None
 
 
-class BearerAuthentication(Authentication):
-    """
-    """
+class BearerAuthentication():
+
     def is_authenticated(self, request, **kwargs):
         request.user = AnonymousUser()
         token = _strip_header_content('Bearer', request.META.get('HTTP_AUTHORIZATION', ''))
@@ -42,11 +40,9 @@ class BearerAuthentication(Authentication):
         return request.user.is_authenticated()
 
 
-class ConsumerAuthentication(Authentication):
+class ConsumerAuthentication():
 
     def is_authenticated(self, request, **kwargs):
-        """
-        """
         header_content = _strip_header_content('Basic', request.META.get('HTTP_AUTHORIZATION', ''))
         if header_content is not None:
             decoded_content = b64decode(header_content).split(':')
