@@ -33,7 +33,7 @@ class School(models.Model):
 
 class Location(models.Model):
 
-	# objects = LocationManager()
+    # objects = LocationManager()
 
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
